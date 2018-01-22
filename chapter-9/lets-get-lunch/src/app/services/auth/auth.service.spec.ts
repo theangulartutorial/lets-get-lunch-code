@@ -27,7 +27,7 @@ describe('AuthService', () => {
   });
 
   describe('signup', () => {
-    it('should return a user object with a valid username and password', () => {
+    it('should return a token with a valid username and password', () => {
       const user = { 'username': 'myUser', 'password': 'password' };
       const signupResponse = {
         '__v': 0,
@@ -66,7 +66,7 @@ describe('AuthService', () => {
   });
 
   describe('login', () => {
-    it('should return a token with a valid user', () => {
+    it('should return a token with a valid username and password', () => {
       const user = { 'username': 'myUser', 'password': 'password' };
       const loginResponse = { 'token': 's3cr3tt0ken' };
       let response;
