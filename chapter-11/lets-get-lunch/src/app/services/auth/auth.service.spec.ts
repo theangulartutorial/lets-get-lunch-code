@@ -81,4 +81,13 @@ describe('AuthService', () => {
       http.verify();
     });
   });
+
+  describe('isLoggedIn', () => {
+    it('should return true if the user is logged in', () => {
+      localStorage.store('Authorization', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.' +
+        'eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.' +
+        'TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ');
+      expect(authService.isLoggedIn()).toEqual(true);
+    });
+  });
 });

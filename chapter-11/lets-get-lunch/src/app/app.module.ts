@@ -9,6 +9,7 @@ import { AuthService } from './services/auth/auth.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './guards/auth/auth.guard';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { HomeComponent } from './home/home.component';
     HttpClientModule,
     Ng2Webstorage
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
