@@ -20,8 +20,8 @@ class SignupPage {
 
   addPageElements() {
     this.submitBtn = fixture.debugElement.query(By.css('button'));
-    this.usernameInput = fixture.debugElement.query(By.css('[name=username')).nativeElement;
-    this.passwordInput = fixture.debugElement.query(By.css('[name=password')).nativeElement;
+    this.usernameInput = fixture.debugElement.query(By.css('[name=username]')).nativeElement;
+    this.passwordInput = fixture.debugElement.query(By.css('[name=password]')).nativeElement;
     this.dietPreference = fixture.debugElement.queryAll(By.css('[name=preference]'));
   }
 }
