@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="lgl-navbar">
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="!isLoggedIn"><a data-test="signup" routerLink="/signup">Signup</a></li>
-        <!-- <li *ngIf="!isLoggedIn"><a data-test="login" routerLink="/login">Login</a></li> -->
+        <li *ngIf="!isLoggedIn"><a data-test="login" routerLink="/login">Login</a></li>
 
         <li *ngIf="isLoggedIn"><a data-test="logout" routerLink="" (click)="logout()">Logout</a></li>
       </ul>

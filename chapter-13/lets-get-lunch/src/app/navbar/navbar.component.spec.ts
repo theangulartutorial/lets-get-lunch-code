@@ -108,5 +108,10 @@ describe('NavbarComponent', () => {
       const link = fixture.debugElement.query(By.css('[data-test=signup]'));
       expect(link.attributes.routerLink).toEqual('/signup');
     });
+
+    it('should have a link to login visible', () => {
+      const link = fixture.debugElement.query(By.css('[data-test=login]'));
+      expect(link.attributes.routerLink).toEqual('/login');
+    });
   });
 });
