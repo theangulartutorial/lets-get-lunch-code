@@ -38,6 +38,24 @@ describe('Signup', () => {
       .get('.alert').should('be.visible').should('have.text', 'Your password must be at least 5 characters long.');
   });
 
-  // TODO
-  // it('should display an error for a username that already exists', () => {});
+  it('should display an error for a username that already exists', () => {
+    cy
+      .visit('/signup')
+      .url().should('include', '/signup')
+      .get('#username').type('user')
+      .get('#password').type('password')
+      .get('form').submit()
+      .url().should('include', '/dashboard');
+
+    cy
+      .get('[data-test=logout]').click();
+
+    cy
+      .visit('/signup')
+      .url().should('include', '/signup')
+      .get('#username').type('user')
+      .get('#password').type('password')
+      .get('form').submit()
+      .get('.alert').should('be.visible').should('have.text', 'This user already exists.');
+  });
 });
