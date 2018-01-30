@@ -30,12 +30,12 @@ describe('Navbar', () => {
       cy.signup();
     });
 
-    it('should show a link to logout', function() {
+    it('should show a link to logout', () => {
       cy
         .get('[data-test=logout]').should('have.text', 'Logout').click().url().should('include', '/');
     });
 
-    it('should redirect to the dashboard when the navbar brand is clicked', function() {
+    it('should redirect to the dashboard when the navbar brand is clicked', () => {
       cy
         .get('.navbar-brand').click().url().should('include', '/dashboard');
     });
