@@ -106,4 +106,23 @@ describe('AuthService', () => {
       expect(authService.loggedIn.emit).toHaveBeenCalledWith(false);
     });
   });
+
+  describe('currentUser', () => {
+    it('should return a user object with a valid token', () => {
+      spyOn(localStorage, 'retrieve').and.callFake(() => 's3cr3tt0ken' );
+      spyOn(authService.jwtHelper, 'decodeToken').and.callFake(() => {
+        return {
+          exp: 1517847480,
+          iat: 1517840280,
+          username: 'username',
+          _id: '5a6f41c94000495518d2673f'
+        };
+      });
+      const res = authService.currentUser();
+
+      expect(localStorage.retrieve).toHaveBeenCalled();
+      expect(res.username).toBeDefined();
+      expect(res._id).toBeDefined();
+    });
+  });
 });

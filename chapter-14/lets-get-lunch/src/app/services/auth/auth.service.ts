@@ -4,13 +4,14 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import { LocalStorageService } from 'ngx-webstorage';
-import { tokenNotExpired } from 'angular2-jwt';
+import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
 
 import { User } from './user';
 
 @Injectable()
 export class AuthService {
   @Output() loggedIn: EventEmitter<boolean>;
+  jwtHelper: JwtHelper = new JwtHelper();
 
   constructor(private http: HttpClient, private localStorage: LocalStorageService) {
     this.loggedIn = new EventEmitter();
@@ -37,6 +38,10 @@ export class AuthService {
 
   isLoggedIn() {
     return tokenNotExpired('ng2-webstorage|authorization');
+  }
+
+  currentUser() {
+    return this.jwtHelper.decodeToken(this.localStorage.retrieve('Authorization'));
   }
 
 }
