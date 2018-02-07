@@ -86,4 +86,52 @@ describe('EventsService', () => {
       http.verify();
     });
   });
+
+  describe('getUserEvents', () => {
+    it('should return an array of events for a user who\'s a member of events', () => {
+      const user = '5a55135639fbc4ca3ee0ce5a';
+      const eventResponse: Array<Event> = [
+        {
+          '_id': '5a55135639fbc4ca3ee0ce5a',
+          '_creator': '5a550ea739fbc4ca3ee0ce58',
+          'title': 'My first event',
+          'description': 'My first description',
+          'city': 'Atlanta',
+          'state': 'GA',
+          'startTime': '2018-01-09T19:00:00.000Z',
+          'endTime': '2018-01-09T20:00:00.000Z',
+          '__v': 0,
+          'suggestLocations': true,
+          'members': [
+            '5a550ea739fbc4ca3ee0ce58'
+          ]
+        }
+      ];
+      let response;
+
+      eventsService.getUserEvents(user).subscribe(res => {
+        response = res;
+      });
+
+      http.expectOne('http://localhost:8080/api/events/user/' + user).flush(eventResponse);
+      expect(response).toEqual(eventResponse);
+      http.verify();
+    });
+
+    it('should return a 500 if an error occurs', () => {
+      const user = '5a55135639fbc4ca3ee0ce5b';
+      const eventError = 'Something went wrong!';
+      let errorResponse;
+
+      eventsService.getUserEvents(user).subscribe(res => {}, err => {
+        errorResponse = err;
+      });
+
+      http
+        .expectOne('http://localhost:8080/api/events/user/' + user)
+        .flush({message: eventError}, {status: 500, statusText: 'Server Error'});
+      expect(errorResponse.error.message).toEqual(eventError);
+      http.verify();
+    });
+  });
 });

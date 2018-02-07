@@ -12,4 +12,8 @@ export class EventsService {
     return this.http.post<Event>('http://localhost:8080/api/events', event);
   }
 
+  getUserEvents(userId: string): Observable<Event[]> {
+    return this.http.get<Event[]>('http://localhost:8080/api/events/user/' + userId);
+  }
+
 }
