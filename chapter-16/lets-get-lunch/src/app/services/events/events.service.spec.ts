@@ -87,6 +87,58 @@ describe('EventsService', () => {
     });
   });
 
+  describe('get', () => {
+    it('should return an event object with a valid event id', () => {
+      const eventId = '5a55135639fbc4ca3ee0ce5a';
+      const eventResponse = {
+        '_id': '5a55135639fbc4ca3ee0ce5a',
+        '_creator': '5a550ea739fbc4ca3ee0ce58',
+        'title': 'My first event',
+        'description': 'My first description',
+        'city': 'Atlanta',
+        'state': 'GA',
+        'startTime': '2018-01-09T19:00:00.000Z',
+        'endTime': '2018-01-09T20:00:00.000Z',
+        '__v': 0,
+        'suggestLocations': true,
+        'members': [
+          {
+            '_id': '5a550ea739fbc4ca3ee0ce58',
+            'username': 'newUser',
+            '__v': 0,
+            'dietPreferences': []
+          }
+        ]
+      };
+      let response;
+
+      eventsService.get(eventId).subscribe(res => {
+        response = res;
+      });
+      spyOn(eventsService, 'formatDateTime').and.callThrough();
+
+      http.expectOne('http://localhost:8080/api/events/' + eventId).flush(eventResponse);
+      expect(eventsService.formatDateTime).toHaveBeenCalled();
+      expect(response).toEqual(eventResponse);
+      http.verify();
+    });
+
+    it('should return a 404 for an event id that does not exist', () => {
+      const eventError = 'This event does not exist.';
+      let errorResponse;
+
+      eventsService.get('1234').subscribe(res => {}, err => {
+        errorResponse = err;
+      });
+
+      http
+        .expectOne('http://localhost:8080/api/events/' + '1234')
+        .flush({message: eventError}, {status: 404, statusText: 'Not Found'});
+      expect(errorResponse.error.message).toEqual(eventError);
+      http.verify();
+    });
+  });
+
   describe('getUserEvents', () => {
     it('should return an array of events for a user who\'s a member of events', () => {
       const user = '5a55135639fbc4ca3ee0ce5a';
