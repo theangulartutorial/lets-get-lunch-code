@@ -1,0 +1,22 @@
+<form #form="ngForm" (ngSubmit)="login(form.value)">
+  <div>
+    <label for="username">Username</label>
+    <input placeholder="Username"
+            id="username"
+            name="username"
+            type="text"
+            [(ngModel)]="user.username">
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input placeholder="******"
+            id="password"
+            name="password"
+            type="password"
+            [(ngModel)]="user.password">
+  </div>
+
+  <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+
+  <button type="submit">Login</button>
+</form>
