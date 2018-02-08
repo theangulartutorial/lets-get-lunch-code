@@ -13,7 +13,7 @@ import { Event } from '../services/events/event';
 
 const currentUser = {
   'username': 'myUser',
-  '_id': '5a55135639fbc4ca3ee0ce5a'
+  '_id': '5a550ea739fbc4ca3ee0ce58'
 };
 
 const events: Array<Event> = [{
@@ -90,7 +90,7 @@ describe('DashboardComponent', () => {
 
   it('should initialize with a call to the EventsService to get the current user\'s events', () => {
     expect(authService.currentUser).toHaveBeenCalled();
-    expect(eventsService.getUserEvents).toHaveBeenCalledWith('5a55135639fbc4ca3ee0ce5a');
+    expect(eventsService.getUserEvents).toHaveBeenCalledWith('5a550ea739fbc4ca3ee0ce58');
     expect(component.addJSDate).toHaveBeenCalled();
     expect(component.addEventColors).toHaveBeenCalled();
     expect(component.events.length).toEqual(1);
