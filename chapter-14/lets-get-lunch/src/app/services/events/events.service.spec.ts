@@ -51,7 +51,7 @@ describe('EventsService', () => {
       };
       let response;
 
-      eventsService.create(event).subscribe((res) => {
+      eventsService.create(event).subscribe(res => {
         response = res;
       });
 

@@ -69,7 +69,7 @@ export class EventCreateComponent implements OnInit {
       suggestLocations: this.eventForm.value.suggestLocations
     };
 
-    this.eventsService.create(event).subscribe((res) => {
+    this.eventsService.create(event).subscribe(res => {
       this.success = 'Your event has been created.';
     }, err => {
       this.error = err.error.message;
