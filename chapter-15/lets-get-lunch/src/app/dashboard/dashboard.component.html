@@ -85,4 +85,7 @@
       </div>
     </div>
   </div>
+
+  <div *ngIf="error" class="alert alert-danger text-center">{{error}}</div>
+  <div *ngIf="noEvents" class="alert alert-info text-center">{{noEvents}}</div>
 </div>

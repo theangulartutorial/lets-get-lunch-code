@@ -19,4 +19,10 @@ describe('Dashboard', () => {
       .createEvent('Dinner', 'Atlanta')
       .get('.cal-event .cal-event-title').should('have.text', 'Dinner');
   });
+
+  it('should display a message if no events exist', () => {
+    cy
+      .signup()
+      .get('.alert-info').should('be.visible');
+  });
 });

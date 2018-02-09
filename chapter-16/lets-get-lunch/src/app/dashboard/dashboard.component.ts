@@ -14,6 +14,8 @@ export class DashboardComponent implements OnInit {
   view = 'week';
   viewDate: Date = new Date();
   events: Array<Event>;
+  error: string;
+  noEvents: string;
 
   constructor(private authService: AuthService, private eventsService: EventsService, private router: Router) { }
 
@@ -23,7 +25,11 @@ export class DashboardComponent implements OnInit {
       if (res) {
         this.events = this.addJSDate(res);
         this.events = this.addEventColors(this.events);
+      } else {
+        this.noEvents = 'You are not a member of any events.';
       }
+    }, err => {
+      this.error = err.error.message;
     });
   }
 
