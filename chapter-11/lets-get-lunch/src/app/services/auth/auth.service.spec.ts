@@ -89,5 +89,10 @@ describe('AuthService', () => {
         'TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ');
       expect(authService.isLoggedIn()).toEqual(true);
     });
+
+    it('should return false if the user is not logged in', () => {
+      localStorage.clear('Authorization');
+      expect(authService.isLoggedIn()).toEqual(false);
+    });
   });
 });
