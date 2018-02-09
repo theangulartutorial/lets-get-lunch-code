@@ -39,7 +39,7 @@ describe('AuthService', () => {
       const loginResponse = { 'token': 's3cr3tt0ken' };
       let response;
 
-      authService.signup(user).subscribe((res) => {
+      authService.signup(user).subscribe(res => {
         response = res;
       });
       spyOn(authService, 'login').and.callFake(() => Observable.of(loginResponse));
