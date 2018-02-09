@@ -17,6 +17,6 @@ describe('Event View', () => {
     cy
       .get('.cal-event .cal-event-title').should('have.text', 'Lunch').click()
       .url().should('include', '/event/')
-      .get('h3').should('have.text', 'Lunch');
+      .get('.event-name').should('have.text', 'Lunch');
   });
 });
