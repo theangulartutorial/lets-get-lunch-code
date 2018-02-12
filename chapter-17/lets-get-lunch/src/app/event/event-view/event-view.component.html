@@ -9,5 +9,19 @@
         <div><label>End:</label><span class="end"> {{event.displayEnd}}</span></div>
       </div>
     </div>
+
+    <div class="col-md-4">
+      <!--member list-->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <app-comment-create *ngIf="eventId" [eventId]="eventId"></app-comment-create>
+    </div>
+
+    <div class="col-md-4">
+      <!--recommendations-list-->
+    </div>
   </div>
 </div>
