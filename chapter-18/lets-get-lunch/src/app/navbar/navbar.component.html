@@ -18,6 +18,7 @@
         <li *ngIf="!isLoggedIn"><a data-test="signup" routerLink="/signup">Signup</a></li>
         <li *ngIf="!isLoggedIn"><a data-test="login" routerLink="/login">Login</a></li>
 
+        <li *ngIf="isLoggedIn"><a data-test="events" routerLink="/events">Events</a></li>
         <li *ngIf="isLoggedIn"><a data-test="logout" routerLink="" (click)="logout()">Logout</a></li>
       </ul>
     </div><!--navbar-collapse-->

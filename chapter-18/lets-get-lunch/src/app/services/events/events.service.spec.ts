@@ -186,4 +186,48 @@ describe('EventsService', () => {
       http.verify();
     });
   });
+
+  describe('all', () => {
+    it('should return an array of all events', () => {
+      const events: Array<Event> = [{
+        '_id': '5a539459b689d341cccc4be8',
+        '_creator': '5a539449b689d341cccc4be7',
+        'title': 'Another event',
+        'description': 'Another event description',
+        'city': 'Atlanta',
+        'state': 'GA',
+        'startTime': '2018-01-08T05:00:00.000Z',
+        'endTime': '2018-01-09T05:00:00.000Z',
+        '__v': 0,
+        'suggestLocations': false,
+        'members': [
+          '5a539449b689d341cccc4be7'
+        ]
+      }];
+      let response;
+
+      eventsService.all().subscribe(res => {
+        response = res;
+      });
+
+      http.expectOne('http://localhost:8080/api/events').flush(events);
+      expect(response).toEqual(events);
+      http.verify();
+    });
+
+    it('should return an error if there\'s a server error', () => {
+      const error = 'Something went wrong!';
+      let errorResponse;
+
+      eventsService.all().subscribe(res => {}, err => {
+        errorResponse = err;
+      });
+
+      http
+        .expectOne('http://localhost:8080/api/events')
+        .flush({message: error}, {status: 500, statusText: 'Server Error'});
+      expect(errorResponse.error.message).toEqual(error);
+      http.verify();
+    });
+  });
 });
