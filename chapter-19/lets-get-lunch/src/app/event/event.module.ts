@@ -8,6 +8,7 @@ import { EventCreateComponent } from './event-create/event-create.component';
 import { EventsService } from '../services/events/events.service';
 import { EventViewComponent } from './event-view/event-view.component';
 import { CommentCreateModule } from '../comment-create/comment-create.module';
+import { MemberListModule } from '../member-list/member-list.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { CommentCreateModule } from '../comment-create/comment-create.module';
     ReactiveFormsModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    CommentCreateModule
+    CommentCreateModule,
+    MemberListModule
   ],
   declarations: [EventCreateComponent, EventViewComponent],
   providers: [EventsService]
