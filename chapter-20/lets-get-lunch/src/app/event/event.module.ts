@@ -9,6 +9,7 @@ import { EventsService } from '../services/events/events.service';
 import { EventViewComponent } from './event-view/event-view.component';
 import { CommentCreateModule } from '../comment-create/comment-create.module';
 import { MemberListModule } from '../member-list/member-list.module';
+import { RecommendationsListModule } from '../recommendations-list/recommendations-list.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { MemberListModule } from '../member-list/member-list.module';
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     CommentCreateModule,
-    MemberListModule
+    MemberListModule,
+    RecommendationsListModule
   ],
   declarations: [EventCreateComponent, EventViewComponent],
   providers: [EventsService]
