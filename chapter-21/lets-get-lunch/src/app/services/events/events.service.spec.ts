@@ -249,6 +249,73 @@ describe('EventsService', () => {
     });
   });
 
+  describe('update', () => {
+    it('should return an updated event with valid event details', () => {
+      const updatedEvent: Event = {
+        '_id': '5a55135639fbc4ca3ee0ce5a',
+        '_creator': '5a550ea739fbc4ca3ee0ce58',
+        'title': 'My first updated event',
+        'description': 'My first updated description',
+        'city': 'Miami',
+        'state': 'FL',
+        'startTime': '2018-01-09T19:00:00.000Z',
+        'endTime': '2018-01-09T20:00:00.000Z',
+        'suggestLocations': true,
+      };
+      const updatedEventResponse = {
+        '_id': '5a55135639fbc4ca3ee0ce5a',
+        '_creator': '5a550ea739fbc4ca3ee0ce58',
+        'title': 'My first updated event',
+        'description': 'My first updated description',
+        'city': 'Miami',
+        'state': 'FL',
+        'startTime': '2018-01-09T19:00:00.000Z',
+        'endTime': '2018-01-09T20:00:00.000Z',
+        '__v': 0,
+        'suggestLocations': true,
+        'members': [
+          '5a550ea739fbc4ca3ee0ce58'
+        ]
+      };
+      let response;
+
+      eventsService.update(updatedEvent).subscribe(res => {
+        response = res;
+      });
+
+      http
+        .expectOne('http://localhost:8080/api/events/' + updatedEvent._id)
+        .flush(updatedEventResponse);
+      expect(response).toEqual(updatedEventResponse);
+      http.verify();
+    });
+
+    it('should return a 500 with invalid event details', () => {
+      const event: Event = {
+        '_id': undefined,
+        '_creator': undefined,
+        'title': undefined,
+        'city': undefined,
+        'state': undefined,
+        'startTime': undefined,
+        'endTime': undefined,
+        'suggestLocations': undefined
+      };
+      const eventResponse = 'Event could not be updated!';
+      let errorResponse;
+
+      eventsService.update(event).subscribe(res => {}, err => {
+        errorResponse = err;
+      });
+
+      http
+        .expectOne('http://localhost:8080/api/events/' + event._id)
+        .flush({message: eventResponse}, {status: 500, statusText: 'Server Error'});
+      expect(errorResponse.error.message).toEqual(eventResponse);
+      http.verify();
+    });
+  });
+
   describe('subscribe', () => {
     it('should return an event with an updated members list', () => {
       const eventId = '5a55135639fbc4ca3ee0ce5a';

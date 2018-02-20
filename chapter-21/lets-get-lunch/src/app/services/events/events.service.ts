@@ -28,6 +28,10 @@ export class EventsService {
     return this.http.get<Event[]>('http://localhost:8080/api/events');
   }
 
+  update(event: Event): Observable<Event> {
+    return this.http.patch<Event>('http://localhost:8080/api/events/' + event._id, event);
+  }
+
   subscribe(eventId: string, user: object): Observable<Event> {
     return this.http.patch<Event>('http://localhost:8080/api/events/' + eventId + '/subscribe', user);
   }

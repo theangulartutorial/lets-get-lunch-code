@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -36,6 +37,8 @@ class MockActivatedRoute {
 
 class MockEventsService {
   get = jasmine.createSpy('get').and.callFake(() => Observable.of(event));
+
+  isEventCreator() {}
 }
 
 describe('EventViewComponent', () => {
@@ -45,7 +48,10 @@ describe('EventViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ EventModule ]
+      imports: [
+        EventModule,
+        RouterTestingModule
+      ]
     })
     .overrideComponent(EventViewComponent, {
       set: {
@@ -57,7 +63,7 @@ describe('EventViewComponent', () => {
           <div class="container">
             <div class="row">
               <div class="col-md-8">
-                <div *ngIf="event">
+                <div *ngIf="event"><a class="event-edit" *ngIf="isCreator" [routerLink]="['/event', eventId, 'update']">Edit</a>
                   <h3 class="event-name">{{event.title}}</h3>
                   <div *ngIf="event.description"><label>Description:</label><span class="description"> {{event.description}}</span></div>
                   <div><label>Location:</label><span class="location"> {{event.city}}, {{event.state}}</span></div>
@@ -100,5 +106,19 @@ describe('EventViewComponent', () => {
 
   it('should initiate a call to get the event details using the active route id', () => {
     expect(eventsService.get).toHaveBeenCalledWith('5a55135639fbc4ca3ee0ce5a');
+  });
+
+  it('should contain a link to update the event if the current user is the event creator', () => {
+    component.isCreator = true;
+    fixture.detectChanges();
+    const updateLink = fixture.debugElement.query(By.css('.event-edit')).nativeElement.getAttribute('href');
+    expect(updateLink).toEqual('/event/5a55135639fbc4ca3ee0ce5a/update');
+  });
+
+  it('should hide a link to update the event if the current user is not the event creator', () => {
+    component.isCreator = false;
+    fixture.detectChanges();
+    const updateLink = fixture.debugElement.query(By.css('.event-edit'));
+    expect(updateLink).toBeNull();
   });
 });
