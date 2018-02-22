@@ -5,11 +5,13 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import { LocalStorageService } from 'ngx-webstorage';
 import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
+import { environment } from '../../../environments/environment';
 
 import { User } from './user';
 
 @Injectable()
 export class AuthService {
+  API = environment.api;
   @Output() loggedIn: EventEmitter<boolean>;
   jwtHelper: JwtHelper = new JwtHelper();
 
@@ -18,12 +20,12 @@ export class AuthService {
   }
 
   signup(credentials: User): Observable<object> {
-    return this.http.post('http://localhost:8080/api/users', credentials)
+    return this.http.post(this.API + '/users', credentials)
       .mergeMap(res => this.login(credentials));
   }
 
   login(credentials: User): Observable<object> {
-    return this.http.post('http://localhost:8080/api/sessions', credentials)
+    return this.http.post(this.API + '/sessions', credentials)
       .map((res: any) => {
         this.localStorage.store('Authorization', res.token);
         this.loggedIn.emit(true);
