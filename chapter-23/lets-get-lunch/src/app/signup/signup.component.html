@@ -1,0 +1,34 @@
+<form #form="ngForm" (ngSubmit)="signup(form.value)">
+  <div>
+    <label for="username">Username</label>
+    <input placeholder="Username"
+            id="username"
+            type="text"
+            [(ngModel)]="user.username"
+            name="username">
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input placeholder="Password"
+            id="password"
+            type="password"
+            [(ngModel)]="user.password"
+            name="password">
+  </div>
+
+  <div>
+    <label>Dietary Preferences:</label>
+    <div *ngFor="let pref of dietPreferences; let i = index;">
+      <label [for]="pref.name">{{pref.name}}</label>
+      <input
+        [id]="pref.name"
+        name="preference"
+        type="checkbox"
+        (change)="onPrefCheck(i)">
+    </div>
+  </div>
+
+  <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+
+  <button type="submit">Submit</button>
+</form>
