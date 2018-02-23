@@ -36,7 +36,6 @@ export class EventCreateComponent implements OnInit {
       autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
           this.location = autocomplete.getPlace();
-          console.log('location ', this.location);
         });
       });
     });
