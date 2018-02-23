@@ -108,7 +108,7 @@ describe('EventsService', () => {
   describe('get', () => {
     it('should return an event object with a valid event id', () => {
       const eventId = '5a55135639fbc4ca3ee0ce5a';
-      const eventResponse = {
+      const eventResponse: Event = {
         '_id': '5a55135639fbc4ca3ee0ce5a',
         '_creator': '5a550ea739fbc4ca3ee0ce58',
         'title': 'My first event',
