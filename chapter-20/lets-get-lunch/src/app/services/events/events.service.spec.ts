@@ -81,13 +81,13 @@ describe('EventsService', () => {
 
     it('should return a 500 with invalid event details', () => {
       const event: Event = {
-        _creator: undefined,
-        title: undefined,
-        city: undefined,
-        state: undefined,
-        startTime: undefined,
-        endTime: undefined,
-        suggestLocations: undefined
+        '_creator': undefined,
+        'title': undefined,
+        'city': undefined,
+        'state': undefined,
+        'startTime': undefined,
+        'endTime': undefined,
+        'suggestLocations': undefined
       };
       const eventResponse = 'Event could not be created!' ;
       let errorResponse;
