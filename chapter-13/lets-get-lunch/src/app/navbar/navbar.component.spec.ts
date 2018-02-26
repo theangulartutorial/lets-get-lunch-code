@@ -22,29 +22,32 @@ describe('NavbarComponent', () => {
   let authService: AuthService;
   let router: Router;
 
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ NavbarComponent ],
+      providers: [
+        { provide: AuthService, useClass:  MockAuthService },
+        { provide: Router, useClass: RouterStub }
+      ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(NavbarComponent);
+    component = fixture.componentInstance;
+    authService = fixture.debugElement.injector.get(AuthService);
+    router = fixture.debugElement.injector.get(Router);
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   describe('with a user who is logged in', () => {
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [ NavbarComponent ],
-        providers: [
-          { provide: AuthService, useClass:  MockAuthService },
-          { provide: Router, useClass: RouterStub }
-        ]
-      })
-      .compileComponents();
-    }));
-
     beforeEach(() => {
-      fixture = TestBed.createComponent(NavbarComponent);
-      component = fixture.componentInstance;
-      authService = fixture.debugElement.injector.get(AuthService);
-      router = fixture.debugElement.injector.get(Router);
-      authService.isLoggedIn = jasmine.createSpy('isLoggedIn').and.callFake(() => true);
+      authService.isLoggedIn = jasmine.createSpy('isLoggedIn').and.returnValue(true);
       fixture.detectChanges();
-    });
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
     });
 
     it('should initialize to see if a user is logged in', () => {
@@ -71,27 +74,9 @@ describe('NavbarComponent', () => {
   });
 
   describe('with a user who is not logged in', () => {
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [ NavbarComponent ],
-        providers: [
-          { provide: AuthService, useClass:  MockAuthService },
-          { provide: Router, useClass: RouterStub }
-        ]
-      })
-      .compileComponents();
-    }));
-
     beforeEach(() => {
-      fixture = TestBed.createComponent(NavbarComponent);
-      component = fixture.componentInstance;
-      authService = fixture.debugElement.injector.get(AuthService);
-      authService.isLoggedIn = jasmine.createSpy('isLoggedIn').and.callFake(() => false);
+      authService.isLoggedIn = jasmine.createSpy('isLoggedIn').and.returnValue(false);
       fixture.detectChanges();
-    });
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
     });
 
     it('should initialize to see if a user is logged in', () => {
