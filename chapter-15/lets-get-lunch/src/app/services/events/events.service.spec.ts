@@ -88,7 +88,7 @@ describe('EventsService', () => {
   });
 
   describe('getUserEvents', () => {
-    it('should return an array of events for a user who\'s a member of events', () => {
+    it('should return events for a user who is a member of events', () => {
       const user = '5a55135639fbc4ca3ee0ce5a';
       const eventResponse: Array<Event> = [
         {
@@ -113,7 +113,9 @@ describe('EventsService', () => {
         response = res;
       });
 
-      http.expectOne('http://localhost:8080/api/events/user/' + user).flush(eventResponse);
+      http
+        .expectOne('http://localhost:8080/api/events/user/' + user)
+        .flush(eventResponse);
       expect(response).toEqual(eventResponse);
       http.verify();
     });

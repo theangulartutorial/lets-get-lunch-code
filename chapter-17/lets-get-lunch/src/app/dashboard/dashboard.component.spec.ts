@@ -84,8 +84,10 @@ describe('DashboardComponent', () => {
     fixture.detectChanges();
     return fixture.whenStable().then(() => {
       fixture.detectChanges();
-      viewDateElement = fixture.debugElement.queryAll(By.css('.toggle-view .btn-primary'));
-      calendarEventElement = fixture.debugElement.queryAll(By.css('.cal-event'));
+      viewDateElement = fixture.debugElement
+                               .queryAll(By.css('.toggle-view .btn-primary'));
+      calendarEventElement = fixture.debugElement
+                                    .queryAll(By.css('.cal-event'));
       eventLink = fixture.debugElement.queryAll(By.css('.cal-event-title'));
     });
   }));
@@ -94,7 +96,7 @@ describe('DashboardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize with a call to the EventsService to get the current user\'s events', () => {
+  it('should initialize with a call to get the current user\'s events', () => {
     expect(authService.currentUser).toHaveBeenCalled();
     expect(eventsService.getUserEvents).toHaveBeenCalledWith('5a550ea739fbc4ca3ee0ce58');
     expect(component.addJSDate).toHaveBeenCalled();
