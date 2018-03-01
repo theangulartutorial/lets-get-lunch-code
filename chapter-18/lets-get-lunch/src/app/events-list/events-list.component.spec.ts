@@ -88,7 +88,7 @@ describe('EventsListComponent', () => {
 
     it('should populate the table with the event', () => {
       const eventsList = fixture.debugElement.queryAll(By.css('.event-title'));
-      expect(eventsList[0].nativeElement.textContent).toEqual('Another event');
+      expect(eventsList[0].nativeElement.textContent).toContain('Another event');
     });
 
     it('should populate the table with a link to the event', () => {
