@@ -32,7 +32,9 @@ describe('Navbar', () => {
 
     it('should show a link to logout', () => {
       cy
-        .get('[data-test=logout]').should('have.text', 'Logout').click().url().should('include', '/');
+        .get('[data-test=logout]')
+          .should('have.text', 'Logout')
+          .click().url().should('include', '/');
     });
 
     it('should redirect to the dashboard when the navbar brand is clicked', () => {
