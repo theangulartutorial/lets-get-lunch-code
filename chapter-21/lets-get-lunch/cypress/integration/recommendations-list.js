@@ -14,7 +14,8 @@ describe('Recommendations List', () => {
     cy.signup(creator, 'foobar');
   });
 
-  it('should not display a list of recommendations for an event that has suggestLocations set to false', () => {
+  it('should not display a list of recommendations for an event that ' +
+    'has suggestLocations set to false', () => {
     eventName = 'MyEvent';
 
     cy
@@ -26,7 +27,8 @@ describe('Recommendations List', () => {
       .get('.recommendations-container').should('not.be.visible');
   });
 
-  it('should display a list of recommendations for an event that has suggestLocations set to true', () => {
+  it('should display a list of recommendations for an event that ' +
+    'has suggestLocations set to true', () => {
     eventName = 'MyEvent';
 
     cy

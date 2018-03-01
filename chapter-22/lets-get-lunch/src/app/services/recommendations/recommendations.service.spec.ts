@@ -23,7 +23,7 @@ describe('RecommendationsService', () => {
   });
 
   describe('get', () => {
-    it('should return a list of restaurant recommendations with a valid event id', () => {
+    it('should return a list of recommendations with a valid event id', () => {
       const eventId = '5a55135639fbc4ca3ee0ce5a';
       let response;
 
