@@ -20,9 +20,17 @@ class SignupPage {
 
   addPageElements() {
     this.submitBtn = fixture.debugElement.query(By.css('button'));
-    this.usernameInput = fixture.debugElement.query(By.css('[name=username]')).nativeElement;
-    this.passwordInput = fixture.debugElement.query(By.css('[name=password]')).nativeElement;
-    this.dietPreference = fixture.debugElement.queryAll(By.css('[name=preference]'));
+    this.usernameInput = fixture
+                           .debugElement
+                           .query(By.css('[name=username]'))
+                           .nativeElement;
+    this.passwordInput = fixture
+                           .debugElement
+                           .query(By.css('[name=password]'))
+                           .nativeElement;
+    this.dietPreference = fixture
+                            .debugElement
+                            .queryAll(By.css('[name=preference]'));
   }
 }
 
@@ -84,7 +92,11 @@ describe('SignupComponent', () => {
     spyOn(router, 'navigate');
     signupPage.submitBtn.nativeElement.click();
 
-    expect(authService.signup).toHaveBeenCalledWith({ username: 'johndoe', password: 'password', dietPreferences: ['BBQ', 'Burger'] });
+    expect(authService.signup).toHaveBeenCalledWith({
+      username: 'johndoe',
+      password: 'password',
+      dietPreferences: ['BBQ', 'Burger']
+    });
     expect(router.navigate).toHaveBeenCalledWith(['/dashboard']);
   });
 
@@ -95,12 +107,17 @@ describe('SignupComponent', () => {
     signupPage.passwordInput.dispatchEvent(new Event('input'));
 
     spyOn(authService, 'signup').and.callFake(() => {
-      return Observable.throw({ error: { message: 'Your password must be at least 5 characters long.' }});
+      return Observable.throw({
+        error: {
+          message: 'Your password must be at least 5 characters long.'
+        }
+      });
     });
     signupPage.submitBtn.nativeElement.click();
 
     fixture.detectChanges();
     const errorMessage: DebugElement = fixture.debugElement.query(By.css('.alert'));
-    expect(errorMessage.nativeElement.textContent).toEqual('Your password must be at least 5 characters long.');
+    expect(errorMessage.nativeElement.textContent)
+      .toEqual('Your password must be at least 5 characters long.');
   });
 });
