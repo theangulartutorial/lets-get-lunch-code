@@ -116,7 +116,7 @@ describe('EventViewComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initiate a call to get the event details using the active route id', () => {
+  it('should initialize with a call to get the event details using the active route id', () => {
     expect(eventsService.get).toHaveBeenCalledWith('5a55135639fbc4ca3ee0ce5a');
   });
 });

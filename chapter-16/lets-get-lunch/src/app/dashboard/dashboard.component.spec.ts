@@ -115,7 +115,8 @@ describe('DashboardComponent', () => {
   it('should navigate to the event view when an event is clicked', () => {
     spyOn(router, 'navigate');
     eventLink[0].nativeElement.click();
-    expect(router.navigate).toHaveBeenCalledWith(['/event/' + '5a55135639fbc4ca3ee0ce5a']);
+    expect(router.navigate)
+      .toHaveBeenCalledWith(['/event/' + '5a55135639fbc4ca3ee0ce5a']);
   });
 
   describe('addJSDate', () => {

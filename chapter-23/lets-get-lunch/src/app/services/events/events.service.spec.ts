@@ -135,7 +135,9 @@ describe('EventsService', () => {
       });
       spyOn(eventsService, 'formatDateTime').and.callThrough();
 
-      http.expectOne('http://localhost:8080/api/events/' + eventId).flush(eventResponse);
+      http
+        .expectOne('http://localhost:8080/api/events/' + eventId)
+        .flush(eventResponse);
       expect(eventsService.formatDateTime).toHaveBeenCalled();
       expect(response).toEqual(eventResponse);
       http.verify();
