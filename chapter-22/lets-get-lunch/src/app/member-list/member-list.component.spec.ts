@@ -133,7 +133,8 @@ describe('MemberListComponent', () => {
     });
 
     it('should update the member list when the subscribe button is clicked', () => {
-      spyOn(eventsService, 'subscribe').and.callFake(() => Observable.of(updatedEvent));
+      spyOn(eventsService, 'subscribe')
+        .and.callFake(() => Observable.of(updatedEvent));
       const subscribeBtn = fixture.debugElement.query(By.css('button'));
       subscribeBtn.nativeElement.click();
       fixture.detectChanges();
@@ -148,7 +149,11 @@ describe('MemberListComponent', () => {
 
     it('should show an error if a subscribe fails', () => {
       spyOn(eventsService, 'subscribe').and.callFake(() => {
-        return Observable.throw({ error: { message: 'Something went wrong. Try again.' }});
+        return Observable.throw({
+          error: {
+            message: 'Something went wrong. Try again.'
+          }
+        });
       });
       const subscribeBtn = fixture.debugElement.query(By.css('button'));
       subscribeBtn.nativeElement.click();

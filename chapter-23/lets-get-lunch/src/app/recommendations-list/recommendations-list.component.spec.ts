@@ -71,7 +71,8 @@ describe('RecommendationsListComponent', () => {
       expect(recommendationsService.get).toHaveBeenCalled();
     });
 
-    it('should display a message that no recommendations exist for this event', () => {
+    it('should display a message that no recommendations ' +
+      'exist for this event', () => {
       const error = fixture.debugElement.query(By.css('.alert-danger'));
       expect(error.nativeElement.textContent).toEqual('No recommendations for this location exist.');
     });

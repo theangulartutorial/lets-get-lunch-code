@@ -11,15 +11,23 @@
             <th>Event Page</th>
           </tr>
           <tr *ngFor="let event of events">
-            <td class="event-title">{{event.title}}</td>
-            <td class="event-description">{{event.description}}</td>
-            <td class="event-link"><a [routerLink]="['/event', event._id]">View</a></td>
+            <td class="event-title">
+              {{event.title}}
+            </td>
+            <td class="event-description">
+              {{event.description}}
+            </td>
+            <td class="event-link">
+              <a [routerLink]="['/event', event._id]">View</a>
+            </td>
           </tr>
         </table>
       </div>
 
-      <div *ngIf="events && !events.length" class="no-events alert alert-info">There are no events.</div>
-      <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+      <div *ngIf="events && !events.length"
+           class="no-events alert alert-info">There are no events.</div>
+      <div *ngIf="errorMessage"
+           class="alert alert-danger">{{errorMessage}}</div>
     </div>
   </div>
 </div>

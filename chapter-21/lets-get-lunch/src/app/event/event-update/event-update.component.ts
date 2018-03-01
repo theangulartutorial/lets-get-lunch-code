@@ -50,8 +50,12 @@ export class EventUpdateComponent implements OnInit {
         description: editedEvent.description,
         startTime: editedEvent.startTime,
         endTime: editedEvent.endTime,
-        city: this.location === undefined ? this.event.city : this.location.address_components[0].long_name,
-        state: this.location === undefined ? this.event.state : this.location.address_components[2].short_name,
+        city: this.location === undefined ?
+              this.event.city :
+              this.location.address_components[0].long_name,
+        state: this.location === undefined ?
+               this.event.state :
+               this.location.address_components[2].short_name,
         suggestLocations: editedEvent.suggestLocations
       };
       this.eventsService.update(payload).subscribe(res => {

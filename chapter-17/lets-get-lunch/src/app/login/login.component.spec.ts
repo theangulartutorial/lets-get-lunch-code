@@ -19,8 +19,14 @@ class LoginPage {
 
   addPageElements() {
     this.loginBtn = fixture.debugElement.query(By.css('button'));
-    this.usernameInput = fixture.debugElement.query(By.css('[name=username]')).nativeElement;
-    this.passwordInput = fixture.debugElement.query(By.css('[name=password]')).nativeElement;
+    this.usernameInput = fixture
+                           .debugElement
+                           .query(By.css('[name=username]'))
+                           .nativeElement;
+    this.passwordInput = fixture
+                           .debugElement
+                           .query(By.css('[name=password]'))
+                           .nativeElement;
   }
 }
 
@@ -81,7 +87,10 @@ describe('LoginComponent', () => {
     spyOn(router, 'navigate');
     loginPage.loginBtn.nativeElement.click();
 
-    expect(authService.login).toHaveBeenCalledWith({ username: 'johndoe', password: 'password' });
+    expect(authService.login).toHaveBeenCalledWith({
+      username: 'johndoe',
+      password: 'password'
+    });
     expect(router.navigate).toHaveBeenCalledWith(['/dashboard']);
   });
 
@@ -100,6 +109,7 @@ describe('LoginComponent', () => {
 
     expect(router.navigate).not.toHaveBeenCalled();
     const errorMessage = fixture.debugElement.query(By.css('.alert'));
-    expect(errorMessage.nativeElement.textContent).toEqual('User could not be found.');
+    expect(errorMessage.nativeElement.textContent)
+      .toEqual('User could not be found.');
   });
 });

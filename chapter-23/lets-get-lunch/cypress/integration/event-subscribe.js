@@ -41,7 +41,8 @@ describe('Event Subscribe', () => {
       .get('.event-subscribe').should('not.be.visible');
   });
 
-  it('should update the member list when a user click\'s the subscribe and unsubscribe button', () => {
+  it('should update the member list when a user clicks the subscribe ' +
+    'and unsubscribe button', () => {
     cy
       .login(subscriber, 'foobar')
 
@@ -63,7 +64,9 @@ describe('Event Subscribe', () => {
       method: 'PATCH',
       status: 500
     });
-    cy.route('/api/events/**/subscribe', { message: 'Something went wrong. Try again.' });
+    cy.route('/api/events/**/subscribe', {
+      message: 'Something went wrong. Try again.'
+    });
 
     cy
       .login(subscriber, 'foobar')

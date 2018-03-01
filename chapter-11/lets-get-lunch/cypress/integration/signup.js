@@ -17,7 +17,8 @@ describe('Signup', () => {
       .url().should('include', '/dashboard');
   });
 
-  it('should navigate to the dashboard with valid credentials and diet preferences', () => {
+  it('should navigate to the dashboard with valid credentials ' +
+    'and diet preferences', () => {
     cy
       .visit('/signup')
       .url().should('include',  '/signup')
@@ -35,7 +36,9 @@ describe('Signup', () => {
       .get('#username').type('user')
       .get('#password').type('123')
       .get('form').submit()
-      .get('.alert').should('be.visible').should('have.text', 'Your password must be at least 5 characters long.');
+      .get('.alert')
+        .should('be.visible')
+        .should('have.text', 'Your password must be at least 5 characters long.');
   });
 
   // TODO

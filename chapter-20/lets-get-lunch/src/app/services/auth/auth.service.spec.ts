@@ -44,7 +44,9 @@ describe('AuthService', () => {
       });
       spyOn(authService, 'login').and.callFake(() => Observable.of(loginResponse));
 
-      http.expectOne('http://localhost:8080/api/users').flush(signupResponse);
+      http
+        .expectOne('http://localhost:8080/api/users')
+        .flush(signupResponse);
       expect(response).toEqual(loginResponse);
       expect(authService.login).toHaveBeenCalled();
       http.verify();
