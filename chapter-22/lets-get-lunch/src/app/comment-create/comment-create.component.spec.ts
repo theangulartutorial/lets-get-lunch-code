@@ -115,7 +115,11 @@ describe('CommentCreateComponent', () => {
 
   it('should show an error message if the event cannot be created', () => {
     spyOn(commentsService, 'create').and.callFake(() => {
-      return Observable.throw({ 'error': { 'message': 'Comment could not be created!' }});
+      return Observable.throw({
+        'error': {
+          'message': 'Comment could not be created!'
+        }
+      });
     });
 
     fixture.debugElement.query(By.css('textarea')).nativeElement.value = 'A server error occurs';

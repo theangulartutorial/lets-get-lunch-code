@@ -91,7 +91,9 @@ describe('CommentsService', () => {
         response = res;
       });
 
-      http.expectOne('http://localhost:8080/api/comments/event/' + eventId).flush(commentResponse);
+      http
+        .expectOne('http://localhost:8080/api/comments/event/' + eventId)
+        .flush(commentResponse);
       expect(response).toEqual(commentResponse);
       http.verify();
     });

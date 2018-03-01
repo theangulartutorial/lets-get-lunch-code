@@ -59,10 +59,22 @@ describe('EventViewComponent', () => {
               <div class="col-md-8">
                 <div *ngIf="event">
                   <h3 class="event-name">{{event.title}}</h3>
-                  <div *ngIf="event.description"><label>Description:</label><span class="description"> {{event.description}}</span></div>
-                  <div><label>Location:</label><span class="location"> {{event.city}}, {{event.state}}</span></div>
-                  <div><label>Start:</label><span class="start"> {{event.displayStart}}</span></div>
-                  <div><label>End:</label><span class="end"> {{event.displayEnd}}</span></div>
+                  <div *ngIf="event.description">
+                    <label>Description:</label>
+                    <span class="description"> {{event.description}}</span>
+                  </div>
+                  <div>
+                    <label>Location:</label>
+                    <span class="location"> {{event.city}}, {{event.state}}</span>
+                  </div>
+                  <div>
+                    <label>Start:</label>
+                    <span class="start"> {{event.displayStart}}</span>
+                  </div>
+                  <div>
+                    <label>End:</label>
+                    <span class="end"> {{event.displayEnd}}</span>
+                  </div>
                 </div>
               </div>
 
@@ -73,7 +85,9 @@ describe('EventViewComponent', () => {
 
             <div class="row">
               <div class="col-md-8">
-                <!--<app-comment-create *ngIf="eventId" [eventId]="eventId"></app-comment-create>-->
+                <!--<app-comment-create *ngIf="eventId"
+                                        [eventId]="eventId">
+                </app-comment-create>-->
               </div>
 
               <div class="col-md-4">
