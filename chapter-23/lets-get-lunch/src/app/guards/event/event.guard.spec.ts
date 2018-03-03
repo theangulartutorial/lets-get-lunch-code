@@ -10,7 +10,8 @@ describe('EventGuard', () => {
   describe('canActivate', () => {
     let eventGuard, eventsService, router;
 
-    it('should return true if the current user is the creator for the requested event', () => {
+    it('should return true if the current user is the creator ' +
+      'for the requested event', () => {
       class EventsService {
         get() { return Observable.of(true); }
         isEventCreator() { return true; }
@@ -26,7 +27,8 @@ describe('EventGuard', () => {
       });
     });
 
-    it('should navigate to /events if the current user is not the creator for the requested event', () => {
+    it('should navigate to /events if the current user is not ' +
+      'the creator for the requested event', () => {
       class EventsService {
         get() { return Observable.of(true); }
         isEventCreator() { return false; }
