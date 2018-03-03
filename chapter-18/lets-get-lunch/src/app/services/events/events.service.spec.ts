@@ -214,7 +214,9 @@ describe('EventsService', () => {
         response = res;
       });
 
-      http.expectOne('http://localhost:8080/api/events').flush(events);
+      http
+        .expectOne('http://localhost:8080/api/events')
+        .flush(events);
       expect(response).toEqual(events);
       http.verify();
     });
