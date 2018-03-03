@@ -43,7 +43,9 @@ describe('CommentsService', () => {
         response = res;
       });
 
-      http.expectOne('http://localhost:8080/api/comments').flush(commentResponse);
+      http
+        .expectOne('http://localhost:8080/api/comments')
+        .flush(commentResponse);
       expect(response).toEqual(commentResponse);
       http.verify();
     });
