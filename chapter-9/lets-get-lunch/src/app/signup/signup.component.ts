@@ -37,14 +37,6 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  onPrefCheck(index) {
-    if (this.dietPreferences[index].checked === true) {
-      this.dietPreferences[index].checked = false;
-    } else {
-      this.dietPreferences[index].checked = true;
-    }
-  }
-
   getSelectedPreferences() {
     return this.dietPreferences
       .filter((preference) => {
@@ -53,6 +45,14 @@ export class SignupComponent implements OnInit {
       .map((preference) => {
         return preference.name;
       });
+  }
+
+  onPrefCheck(index) {
+    if (this.dietPreferences[index].checked === true) {
+      this.dietPreferences[index].checked = false;
+    } else {
+      this.dietPreferences[index].checked = true;
+    }
   }
 
 }
