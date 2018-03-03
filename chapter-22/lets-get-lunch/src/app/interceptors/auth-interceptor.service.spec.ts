@@ -17,7 +17,11 @@ describe('AuthInterceptorService', () => {
     TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ],
       providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptorService,
+          multi: true
+        },
         { provide: LocalStorageService, useClass: LocalStorageMock }
       ]
     });

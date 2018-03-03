@@ -55,8 +55,9 @@ describe('EventsService', () => {
         response = res;
       });
 
-      http.expectOne('http://localhost:8080/api/events').flush(eventResponse);
-
+      http
+        .expectOne('http://localhost:8080/api/events')
+        .flush(eventResponse);
       expect(response).toEqual(eventResponse);
       http.verify();
     });
@@ -81,7 +82,6 @@ describe('EventsService', () => {
       http
         .expectOne('http://localhost:8080/api/events')
         .flush({message: eventResponse}, {status: 500, statusText: 'Servor Error'});
-
       expect(errorResponse.error.message).toEqual(eventResponse);
       http.verify();
     });

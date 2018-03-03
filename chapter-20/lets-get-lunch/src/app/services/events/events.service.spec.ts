@@ -73,8 +73,9 @@ describe('EventsService', () => {
         response = res;
       });
 
-      http.expectOne('http://localhost:8080/api/events').flush(eventResponse);
-
+      http
+        .expectOne('http://localhost:8080/api/events')
+        .flush(eventResponse);
       expect(response).toEqual(eventResponse);
       http.verify();
     });
