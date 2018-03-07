@@ -11,7 +11,7 @@ describe('Login', () => {
 
     cy
       .signup(unique, 'password')
-      .get('.navbar-nav li').last().should('have.text', 'Logout').click();
+      .get('[data-test=logout]').should('have.text', 'Logout').click();
   });
 
   it('should display an error messsage for an incorrect password', () => {
