@@ -23,12 +23,7 @@ describe('EventsService', () => {
       imports: [HttpClientTestingModule],
       providers: [
         EventsService,
-        {
-          provide: AuthService,
-          useFactory: () => {
-            return new MockAuthService();
-          }
-        }
+        { provide: AuthService, useClass: MockAuthService }
       ]
     });
 
