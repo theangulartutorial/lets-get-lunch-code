@@ -56,7 +56,7 @@ describe('RecommendationsListComponent', () => {
 
     it('should populate the view with a list of recommendations', () => {
       const recommendations = fixture.debugElement.queryAll(By.css('.recommendation'));
-      expect(recommendations[0].nativeElement.textContent).toEqual('Joe\'s Stone Crab');
+      expect(recommendations[0].nativeElement.textContent).toContain('Joe\'s Stone Crab');
     });
   });
 
