@@ -1,4 +1,4 @@
-### Google Maps API key
+### Google Maps API key (from Chapter 14)
 
 Along with the ability to select a start and end date using the date-time picker, users can also select a location for the event. To do this, we'll be using Google Maps and their autocomplete feature.
 

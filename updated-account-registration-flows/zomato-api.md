@@ -1,4 +1,4 @@
-## Create GitHub account
+## Create GitHub account (from Chapter 4)
 
 While we're working through this book, we'll be periodically pushing our code to GitHub. GitHub is a development platform that's primarily used for hosting code. GitHub and other similar services such as GitLab and Bitbucket are tools you're likely to encounter in your professional career so it doesn't hurt to familiarize yourself with them now.
 
